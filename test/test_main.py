@@ -32,7 +32,7 @@ def test_product_initialization(reset_totals):
 def test_add_product_to_category(reset_totals):
     category = Category("Смартфоны", "Смартфоны, как средство не только коммуникации, но и получение дополнительных "
                                      "функций для"
-                        "удобства жизни")
+                                     "удобства жизни")
     product1 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     product2 = Product("iPhone 13", "128GB, Синий цвет, 12MP камера", 120000.0, 10)
 
@@ -43,3 +43,28 @@ def test_add_product_to_category(reset_totals):
     category.add_product(product2)
     assert len(category.products) == 2
     assert Category.total_unique_products == 2
+
+
+def test_get_products_format(reset_totals):
+    category = Category("Смартфоны", "Смартфоны, как средство не только коммуникации, но и получение дополнительных "
+                                     "функций для удобства жизни")
+    product1 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("iPhone 13", "128GB, Синий цвет, 12MP камера", 120000.0, 10)
+
+    category.add_product(product1)
+    category.add_product(product2)
+
+    expected_output = [
+        "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 5 шт.",
+        "iPhone 13, 120000.0 руб. Остаток: 10 шт."
+    ]
+
+    assert category.get_products_format == expected_output
+
+
+def test_set_price_negative_value(reset_totals):
+    product = Product("Xiaomi 14 pro", "256GB, Серый цвет, 200MP камера", 50.0, 100)
+
+    product.price = -10.0
+
+    assert product.price == 50.0
