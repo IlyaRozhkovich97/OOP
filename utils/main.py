@@ -1,93 +1,5 @@
-import json
-
-
-class Category:
-    """Класс категории"""
-    total_categories = 0
-    total_unique_products = 0
-
-    def __init__(self, name: str, description: str):
-        """
-        Инициализатор класса Category.
-        name: Название категории.
-        description: Описание категории.
-        products: Список продуктов в данной категории.
-        """
-        self.name = name
-        self.description = description
-        self.__products = []
-        Category.total_categories += 1
-
-    def add_product(self, product):
-        """Добавление продукта в категорию"""
-        self.__products.append(product)
-        Category.total_unique_products += 1
-
-    @property
-    def products(self):
-        """Геттер для списка товаров."""
-        return self.__products
-
-    @property
-    def get_products_format(self):
-        """Метод для форматирования списка товаров."""
-        product_list = []
-        for product in self.__products:
-            product_list.append(f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.")
-        return product_list
-
-
-class Product:
-    """Классы продукт"""
-
-    total_products = 0
-
-    def __init__(self, name: str, description: str, price: float, quantity: int):
-        """
-        Инициализатор класса Product.
-        name: Название продукта.
-        description: Описание продукта.
-        price: Цена продукта.
-        quantity: Количество продукта.
-        """
-        self.name = name
-        self.description = description
-        self.__price = price
-        self.quantity = quantity
-        Product.total_products += 1
-
-    @classmethod
-    def create_product(cls, name: str, description: str, price: float, quantity: int):
-        """Создает и возвращает объект продукта."""
-        return cls(name, description, price, quantity)
-
-    @property
-    def price(self):
-        """Геттер для цены."""
-        return self.__price
-
-    @price.setter
-    def price(self, value):
-        """Сеттер для цены."""
-        if value > 0:
-            self.__price = value
-        else:
-            print("Цена введена некорректно.")
-
-
-def load_data_from_json(filename):
-    with open(filename, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-    categories = []
-    for category_data in data:
-        category = Category(category_data['name'], category_data['description'])
-        for product_data in category_data['products']:
-            product = Product(product_data['name'], product_data['description'], product_data['price'],
-                              product_data['quantity'])
-            category.add_product(product)
-        categories.append(category)
-    return categories
-
+from category import Category, load_data_from_json
+from product import Product
 
 categories = load_data_from_json('products.json')
 
@@ -113,6 +25,24 @@ print("Цена:", product.price)
 print(f"Количество: {product.quantity}\n")
 
 print("Проверка отрицательно значения:")
-#new_price = int(input("Введите новую цену: "))
+# new_price = int(input("Введите новую цену: "))
 product.price = -500
-print("Текущая цена после попыток изменения:", product.price)
+print(f"Текущая цена после попыток изменения:, {product.price}\n")
+
+# Проверяем __str__ в классе Product
+product = Product("Название продукта", "Описание продукта", 80, 15)
+print(f"Проверяем __str__ в классе Product:\n{product}\n")
+
+# Проверяем __str__  и __len__ в классе Category
+category = Category("Название категории", "Описание категории")
+product1 = Product("Продукт 1", "Описание продукта 1", 100, 5)
+product2 = Product("Продукт 2", "Описание продукта 2", 200, 3)
+category.add_product(product1)
+category.add_product(product2)
+print(f"Проверяем __str__  и __len__ в классе Category:\n{category}\n")
+
+# Проверяем __add__ в классе Product
+product1 = Product("Продукт A", "Описание продукта A", 100, 10)
+product2 = Product("Продукт B", "Описание продукта B", 200, 2)
+result = product1 + product2
+print(f"Проверяем __add__ в классе Product:\n{result}\n")
