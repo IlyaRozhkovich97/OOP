@@ -1,5 +1,6 @@
 from category import Category, load_data_from_json
 from product import Product
+from Inherited_class import Smartphone, LawnGrass
 
 categories = load_data_from_json('products.json')
 
@@ -46,3 +47,20 @@ product1 = Product("Продукт A", "Описание продукта A", 10
 product2 = Product("Продукт B", "Описание продукта B", 200, 2)
 result = product1 + product2
 print(f"Проверяем __add__ в классе Product:\n{result}\n")
+
+print(f"Проверяем наследования:")
+# Создание экземпляров продуктов
+smartphone = Smartphone("Смартфон", "Мощный смартфон", 1000, 10, "Apple",
+                        "iPhone 12", "256 ГБ", "Чёрный")
+lawn_grass = LawnGrass("Трава", "Смесь для газонов", 50, 100, "Россия",
+                       "30 дней", "Зелёный")
+
+# Вывод информации о продуктах
+print(smartphone)
+print(lawn_grass)
+
+print("\nПроверка сложения продуктов разных типов:")
+try:
+    mixed_result = smartphone + lawn_grass
+except TypeError as e:
+    print(e)

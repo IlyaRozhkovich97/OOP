@@ -40,5 +40,10 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
+        if type(self) != type(other):
+            raise TypeError("Нельзя складывать товары разных типов")
         total_price = (self.price * self.quantity) + (other.price * other.quantity)
-        return f"Результат сложений: {total_price}"
+        return f"Результат сложения: {total_price}"
+
+        # total_price = (self.price * self.quantity) + (other.price * other.quantity)
+        # return f"Результат сложений: {total_price}"

@@ -22,8 +22,11 @@ class Category:
 
     def add_product(self, product):
         """Добавление продукта в категорию"""
-        self.__products.append(product)
-        Category.total_unique_products += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.total_unique_products += 1
+        else:
+            raise TypeError("Можно добавить только объекты класса Product или его наследников.")
 
     @property
     def products(self):
