@@ -16,7 +16,7 @@ def test_product_initialization(reset_totals):
     assert Product.total_products == 1
 
 
-def test_set_price_negative_value(reset_totals):
+def test_set_price_negative_value():
     product = Product("Xiaomi 14 pro", "256GB, Серый цвет, 200MP камера", 50.0, 100)
     product.price = -10.0
     assert product.price == 50.0
@@ -32,7 +32,7 @@ def test_create_product_classmethod(reset_totals):
     assert Product.total_products == 1
 
 
-def test_add_method(reset_totals):
+def test_add_method():
     product1 = Product("Продукт A", "Описание продукта A", 100, 10)
     product2 = Product("Продукт B", "Описание продукта B", 200, 2)
     assert (product1 + product2) == "Результат сложений: 1400"

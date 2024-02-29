@@ -1,5 +1,4 @@
 import json
-
 from utils.product import Product
 
 
@@ -48,6 +47,13 @@ class Category:
     def __str__(self):
         """Строковое отображение категории."""
         return f"{self.name}, количество продуктов: {len(self)} шт."
+
+    def create_product(self, **kwargs):
+        """Метод для создания нового продукта из словаря с данными."""
+        product = Product(**kwargs)
+        self.add_product(product)
+        print(f"Продукт '{product.name}' успешно создан и добавлен в категорию '{self.name}'.")
+        return product
 
 
 def load_data_from_json(filename):

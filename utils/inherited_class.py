@@ -1,4 +1,4 @@
-from product import Product
+from utils.product import Product
 
 
 class Smartphone(Product):
@@ -30,10 +30,7 @@ class LawnGrass(Product):
                 f"{self.price} руб., Остаток: {self.quantity} шт.")
 
 
-# Создание экземпляров продуктов
-smartphone = Smartphone("Смартфон", "Мощный смартфон", 1000, 10, "Apple", "iPhone 12", "256 ГБ", "Чёрный")
-lawn_grass = LawnGrass("Трава", "Смесь для газонов", 50, 100, "Россия", "30 дней", "Зелёный")
-
-# Вывод информации о продуктах
-print(smartphone)
-print(lawn_grass)
+smartphone = Smartphone("Смартфон", "Мощный смартфон", 1000, 10, "Apple",
+                        "iPhone 12", "256 ГБ", "Чёрный")
+lawn_grass = LawnGrass("Трава", "Смесь для газонов", 50, 100, "Россия",
+                       "30 дней", "Зелёный")

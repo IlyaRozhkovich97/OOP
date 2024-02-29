@@ -9,7 +9,7 @@ def reset_totals():
     Category.total_unique_products = 0
 
 
-def test_category_initialization(reset_totals):
+def test_category_initialization():
     category = Category("Смартфоны",
                         "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для "
                         "удобства жизни")
@@ -67,7 +67,7 @@ def test_len_method(reset_totals):
     assert len(category) == 15
 
 
-def test_str_method(reset_totals):
+def test_str_method():
     category = Category("Тест Category", "Это тестовая категория")
     product1 = Product("Продукт 1", "Описание 1", 100, 5)
     product2 = Product("Продукт 2", "Описание 2", 200, 10)
