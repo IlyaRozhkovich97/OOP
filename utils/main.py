@@ -43,10 +43,14 @@ other_object = "Просто строка"
 print(f"\033[91mПроверяем __str__  и __len__ в классе Category:\033[0m\n{category}\n")
 
 # Проверяем __add__ в классе Product
-product3 = Product("Продукт A", "Описание продукта A", 100, 10)
-product4 = Product("Продукт B", "Описание продукта B", 200, 2)
-result = product4 + product4
-print(f"\033[91mПроверяем __add__ в классе Product:\033[0m\n{result}\n")
+product3 = Product("Продукт 1", "Описание продукта 1", 100, 5)
+product4 = Product("Продукт 2", "Описание продукта 2", 200, 3)
+
+try:
+    result = product3 + product4
+    print(f"\033[91mПроверяем __add__ в классе Product:\033[0m\n{result}\n")
+except TypeError as e:
+    print(e)
 
 # Проверяем наследования
 print(f"\033[91mПроверяем наследования:\033[0m")
