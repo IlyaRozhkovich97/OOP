@@ -43,7 +43,7 @@ class Product:
         if not isinstance(other, type(self)):
             raise TypeError("Нельзя складывать товары разных типов")
         total_price = (self.price * self.quantity) + (other.price * other.quantity)
-        return f"Результат сложений: {total_price}"
+        return total_price
 
         # total_price = (self.price * self.quantity) + (other.price * other.quantity)
         # return f"Результат сложений: {total_price}"
