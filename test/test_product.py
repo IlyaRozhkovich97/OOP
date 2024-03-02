@@ -35,4 +35,4 @@ def test_create_product_classmethod(reset_totals):
 def test_add_method():
     product1 = Product("Продукт A", "Описание продукта A", 100, 10)
     product2 = Product("Продукт B", "Описание продукта B", 200, 2)
-    assert (product1 + product2) == "Результат сложений: 1400"
+    assert (product1 + product2) == 1400
