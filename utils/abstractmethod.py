@@ -11,13 +11,16 @@ class AbstractProduct(ABC):
 
 
 class ReprMixin:
+    """Миксин для вывода информации о создании объекта в консоль."""
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.__repr__()
 
     def __repr__(self):
+        """Метод вывода информации о созданном объекте."""
         attributes = ', '.join(f"{value}" for value in self.__dict__.values())
-        return f"{self.__class__.__name__}({attributes})"
+        return f"Создан объект класса {self.__class__.__name__} с атрибутами: {attributes}"
 
 
 class Product(AbstractProduct, ReprMixin, ABC):
@@ -36,7 +39,7 @@ class Product(AbstractProduct, ReprMixin, ABC):
         return self.__class__(**kwargs)
 
 
-class Smartphone(Product, ABC):
+class Smartphone(Product):
     """Класс для смартфонов."""
 
     def __init__(self, name, description, price, quantity, performance, model, storage_capacity, color):
@@ -47,7 +50,7 @@ class Smartphone(Product, ABC):
         self.color = color
 
 
-class LawnGrass(Product, ABC):
+class LawnGrass(Product):
     """Класс для травы газонной."""
 
     def __init__(self, name, description, price, quantity, country_of_origin, germination_period, color):
