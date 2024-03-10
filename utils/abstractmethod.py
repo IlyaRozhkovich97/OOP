@@ -20,10 +20,11 @@ class ReprMixin:
     def __repr__(self):
         """Метод вывода информации о созданном объекте."""
         attributes = ', '.join(f"{value}" for value in self.__dict__.values())
-        return f"Создан объект класса {self.__class__.__name__} с атрибутами: {attributes}"
+        return (f"\033[91mСоздан объект класса\033[0m {self.__class__.__name__} \033[91mс атрибутами: "
+                f"\033[0m{attributes}")
 
 
-class Product(AbstractProduct, ReprMixin, ABC):
+class Product_(AbstractProduct, ReprMixin, ABC):
     """Класс для продуктов."""
 
     def __init__(self, name, description, price, quantity, **kwargs):
@@ -39,7 +40,7 @@ class Product(AbstractProduct, ReprMixin, ABC):
         return self.__class__(**kwargs)
 
 
-class Smartphone(Product):
+class Smartphone_(Product_):
     """Класс для смартфонов."""
 
     def __init__(self, name, description, price, quantity, performance, model, storage_capacity, color):
@@ -50,7 +51,7 @@ class Smartphone(Product):
         self.color = color
 
 
-class LawnGrass(Product):
+class LawnGrass_(Product_):
     """Класс для травы газонной."""
 
     def __init__(self, name, description, price, quantity, country_of_origin, germination_period, color):
@@ -60,11 +61,11 @@ class LawnGrass(Product):
         self.color = color
 
 
-product = Product('Продукт1', 'Описание продукта', 1200, 10)
-smartphone = Smartphone("Смартфон", "Мощный смартфон", 1000, 10, "Apple",
-                        "iPhone 12", "256 ГБ", "Чёрный")
-lawn_grass = LawnGrass("Трава", "Смесь для газонов", 50, 100, "Россия",
-                       "30 дней", "Зелёный")
+product = Product_('Продукт1', 'Описание продукта', 1200, 10)
+smartphone = Smartphone_("Смартфон", "Мощный смартфон", 1000, 10, "Apple",
+                         "iPhone 12", "256 ГБ", "Чёрный")
+lawn_grass = LawnGrass_("Трава", "Смесь для газонов", 50, 100, "Россия",
+                        "30 дней", "Зелёный")
 
 print(product)
 print(smartphone)
