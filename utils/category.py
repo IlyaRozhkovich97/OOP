@@ -22,6 +22,8 @@ class Category:
     def add_product(self, product):
         """Добавление продукта в категорию"""
         if isinstance(product, Product):
+            if product.quantity == 0:
+                raise ValueError("Товар с нулевым количеством не может быть добавлен.")
             self.__products.append(product)
             Category.total_unique_products += 1
         else:
@@ -54,6 +56,15 @@ class Category:
         self.add_product(product)
         print(f"Продукт '{product.name}' успешно создан и добавлен в категорию '{self.name}'.")
         return product
+
+    def average_price(self):
+        """Метод для подсчета среднего ценника всех товаров в категории."""
+        try:
+            total_price = sum(product.price for product in self.__products)
+            return total_price / len(self.__products)
+        except ZeroDivisionError:
+            print("Нет товаров в категории.")
+            return 0
 
 
 def load_data_from_json(filename):
